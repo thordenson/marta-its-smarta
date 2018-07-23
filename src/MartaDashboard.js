@@ -18,9 +18,11 @@ class MartaDashboard extends React.Component {
         fetch(MARTA_URL, {
             method: 'get'
             }).then((response) => {
-                console.log('got the respponse');
+                console.log('got the response');
                 return response.json();
-            }).then((jsonData) => {
+            })
+            .then(this._cleanUpMarta)
+            .then((jsonData) => {
                 console.log(jsonData);
                 console.log('got the data');
                 this.setState({
