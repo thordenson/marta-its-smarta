@@ -9,7 +9,7 @@ class MartaDashboard extends React.Component {
 
     this.state = {
       data: [],
-      visibleLineNames: ["green", "blue", "red", "gold"]
+      visibleLineNames: ["green"]
     };
   }
 
@@ -25,6 +25,13 @@ class MartaDashboard extends React.Component {
     return (
       <div>
         <h1>Marta! Why you late all the time???</h1>
+        <div>
+          <button onClick={() => {this._toggleLine("all")}}>all</button>
+          <button onClick={() => {this._toggleLine("red")}}>red</button>
+          <button onClick={() => {this._toggleLine("green")}}>green</button>
+          <button onClick={() => {this._toggleLine("blue")}}>blue</button>
+          <button onClick={() => {this._toggleLine("gold")}}>gold</button>
+        </div>
         {martaLines}
       </div>
     );
@@ -33,6 +40,36 @@ class MartaDashboard extends React.Component {
   componentDidMount() {
     this._getMartaData();
     setInterval(this._getMartaData, 2000);
+  }
+
+  _toggleLine = (nameOfLine) => {
+    // Check if nameOfLine is "all"
+    if (nameOfLine === "all") {
+        this.setState({
+          visibleLineNames: ["green", "blue", "red", "gold"]
+        })
+    } else {
+
+      // Alternate version that will only show the line that you
+      // clicked on :)
+      this.setState({
+        visibleLineNames: [nameOfLine]
+      });
+
+      // If not, check if nameOfLine is in this.state.visibleLineNames
+      // if (this.state.visibleLineNames.includes(nameOfLine)) {
+      //   // If so, filter it out
+      //   this.setState({
+      //     visibleLineNames: this.state.visibleLineNames.filter(name => name !== nameOfLine)
+      //   })
+      // } else {
+      //   // Otherwise, put it in.
+      //   this.setState({
+      //     visibleLineNames: this.state.visibleLineNames.concat(nameOfLine)
+      //   })
+      // }
+
+    }
   }
 
   _getMartaData = () => {
