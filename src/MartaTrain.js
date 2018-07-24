@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MartaTrain = (train) => {
+const MartaTrain = ({train}) => {
     return (
         <div className="train-card">
             <p key={train.TRAIN_ID}>
